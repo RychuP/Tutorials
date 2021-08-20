@@ -9,9 +9,11 @@
     {
         static void Main()
         {
-            var startingDeck = from s in Suits()
-                               from r in Ranks()
-                               select new { Suit = s, Rank = r };
+            var startingDeck = (from s in Suits().LogQuery("Suit Generation")
+                                from r in Ranks().LogQuery("Rank Generation")
+                                select new { Suit = s, Rank = r })
+                                .LogQuery("Starting Deck")
+                                .ToArray();
 
             Console.WriteLine("Starting deck:");
 
@@ -26,11 +28,28 @@
 
 
             var times = 0;
-            // We can re-use the shuffle variable from earlier, or you can make a new one
+            // We can re-usethe shuffle variable from earlier, or you can make a new one
             var shuffle = startingDeck;
             do
             {
-                shuffle = shuffle.Skip(26).InterleaveSequenceWith(shuffle.Take(26));
+                
+
+                // Out shuffle
+                /*
+                shuffle = shuffle.Take(26)
+                    .LogQuery("Top Half")
+                    .InterleaveSequenceWith(shuffle.Skip(26)
+                    .LogQuery("Bottom Half"))
+                    .LogQuery("Shuffle")
+                    .ToArray();
+                */
+
+                // In shuffle
+                shuffle = shuffle.Skip(26)
+                        .LogQuery("Bottom Half")
+                        .InterleaveSequenceWith(shuffle.Take(26).LogQuery("Top Half"))
+                        .LogQuery("Shuffle")
+                        .ToArray();
 
                 foreach (var card in shuffle)
                 {
