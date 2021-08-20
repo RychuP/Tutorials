@@ -7,7 +7,7 @@
 
     class Program
     {
-        static void Main()
+        static void Main1()
         {
             var startingDeck = (from s in Suits().LogQuery("Suit Generation")
                                 from r in Ranks().LogQuery("Rank Generation")
