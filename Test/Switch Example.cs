@@ -1,5 +1,7 @@
 ﻿namespace SwitchExample
 {
+    // examples of the new switch expressions
+
     using System;
 
     class Switch

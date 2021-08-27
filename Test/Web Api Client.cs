@@ -1,5 +1,8 @@
 ﻿namespace WebApiClient
 {
+    // Taken from https://docs.microsoft.com/en-gb/dotnet/csharp/tutorials/console-webapiclient
+    // Shows how to send HTTP requests, deserialize JSON responses, configure deserialization with attributes.
+
     using System;
     using System.Collections.Generic;
     using System.Net.Http;

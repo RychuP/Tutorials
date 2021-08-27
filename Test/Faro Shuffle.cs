@@ -1,5 +1,8 @@
 ﻿namespace FaroShuffle
 {
+    // Posted at https://docs.microsoft.com/en-gb/dotnet/csharp/tutorials/working-with-linq
+    // Faro shuffle splits a deck exactly in half, then it interleaves cards from each half to rebuild the original deck.
+
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -28,7 +31,7 @@
 
 
             var times = 0;
-            // We can re-usethe shuffle variable from earlier, or you can make a new one
+            // We can re-use the shuffle variable from earlier, or you can make a new one
             var shuffle = startingDeck;
             do
             {

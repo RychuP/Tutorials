@@ -1,5 +1,8 @@
 ﻿namespace AttributeTest
 {
+    // Taken loosely from https://docs.microsoft.com/en-gb/dotnet/csharp/tutorials/attributes
+    // Messing around with attributes.
+
     using System;
     using System.ComponentModel;
     using System.Reflection;

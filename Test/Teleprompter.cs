@@ -1,28 +1,12 @@
 ﻿namespace TeleprompterConsole
 {
+    // Taken from https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/console-teleprompter
+    // Basics of the Task-based Asynchronous Programming in .NET
+
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
-
-    class TelePrompterConfig
-    {
-        public int DelayInMilliseconds { get; private set; } = 250;
-
-        public void UpdateDelay(int increment) // negative to speed up
-        {
-            var newDelay = Math.Min(DelayInMilliseconds + increment, 1000);
-            newDelay = Math.Max(newDelay, 20);
-            DelayInMilliseconds = newDelay;
-        }
-
-        public bool Done { get; private set; }
-
-        public void SetDone()
-        {
-            Done = true;
-        }
-    }
 
     class Program
     {
@@ -95,5 +79,24 @@
                 }
             }
         } 
+    }
+
+    class TelePrompterConfig
+    {
+        public int DelayInMilliseconds { get; private set; } = 250;
+
+        public void UpdateDelay(int increment) // negative to speed up
+        {
+            var newDelay = Math.Min(DelayInMilliseconds + increment, 1000);
+            newDelay = Math.Max(newDelay, 20);
+            DelayInMilliseconds = newDelay;
+        }
+
+        public bool Done { get; private set; }
+
+        public void SetDone()
+        {
+            Done = true;
+        }
     }
 }
