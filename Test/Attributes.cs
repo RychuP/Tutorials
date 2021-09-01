@@ -12,7 +12,7 @@
     [MyPrecious("Lord of the Rings")]
     class Program
     {
-        static void Main()
+        static void Main1()
         {
             TypeInfo typeInfo = typeof(Program).GetTypeInfo();
             Console.WriteLine("The assembly qualified name of the class Program is {0}\n", typeInfo.AssemblyQualifiedName);

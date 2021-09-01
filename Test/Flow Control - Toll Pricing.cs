@@ -1,6 +1,6 @@
 ﻿namespace TollSystem
 {
-    // Variation on a tutorial posted at https://docs.microsoft.com/en-gb/dotnet/csharp/fundamentals/tutorials/pattern-matching
+    // Variation of a tutorial posted at https://docs.microsoft.com/en-gb/dotnet/csharp/fundamentals/tutorials/pattern-matching
     // Program creates a list of random vehicles crossing a toll and calculates charges.
 
     using System;
