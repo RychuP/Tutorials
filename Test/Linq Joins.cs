@@ -165,7 +165,7 @@
         };
 
         public static List<Employee> employees = new List<Employee> { terry, charlotte, vernette, magnus };
-        public static List<Person> people = new List<Person> { magnus, terry, charlotte, arlene, rui, phyllis, rychu };
+        public static List<Person> people = new List<Person> { magnus, terry, charlotte, arlene, rui, phyllis, vernette, rychu };
         public static List<Cat> cats = new List<Cat> { barley, boots, whiskers, bluemoon, daisy, rupert };
         public static List<Dog> dogs = new List<Dog> { fourwheeldrive, duke, denim, wiley, snoopy, snickers };
     }

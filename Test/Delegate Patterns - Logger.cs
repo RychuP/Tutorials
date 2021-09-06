@@ -8,7 +8,7 @@
 
     class Program
     {
-        static void Main()
+        static void Main1()
         {
             // test for for null WriteMessage delegate
             Logger.LogMessage(Severity.Critical, "foo", "bar");
