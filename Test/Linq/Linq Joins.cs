@@ -5,10 +5,11 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Xml.Linq;
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             DrawLine("Inner Join", true);
             InnerJoinExample();
@@ -111,8 +112,8 @@
 
             var query1 = from person in people
                          join pet in pets on person equals pet.Owner into gj
-                         from subpet in gj
-                         select new { OwnerName = person.FirstName, PetName = subpet.Name };
+                         from subpet in gj.DefaultIfEmpty()
+                         select new { OwnerName = person.FirstName, PetName = subpet?.Name ?? string.Empty};
 
             Console.WriteLine("Inner join using GroupJoin():");
             foreach (var v in query1)
@@ -127,6 +128,21 @@
             Console.WriteLine("\nThe equivalent operation using Join():");
             foreach (var v in query2)
                 Console.WriteLine($"{v.OwnerName} - {v.PetName}");
+
+            XElement ownersAndPets = new XElement("PetOwners",
+                from person in people
+                join pet in pets on person equals pet.Owner into gj
+                select new XElement("Person",
+                    new XAttribute("FirstName",  person.FirstName),
+                    new XAttribute("SecondName", person.LastName),
+                    from subpet in gj
+                    select new XElement("Pet", 
+                        subpet.Name
+                    )
+                )
+            );
+
+            Console.WriteLine("\nGroup join with xml:\n" + ownersAndPets);
         }
     }
 
