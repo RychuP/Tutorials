@@ -9,7 +9,7 @@
 
     class CustomJoins
     {
-        static void Main()
+        static void Main1()
         {
             CustomJoins app = new CustomJoins();
             // app.CrossJoin();
