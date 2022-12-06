@@ -7,7 +7,7 @@
 
     class Program
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             // drive info
             DriveInfo di = new DriveInfo(@"C:\");
