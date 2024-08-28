@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tutorials
+namespace Tutorials.Interfaces
 {
     internal struct Box : IEquatable<Box>, IComparable<Box>
     {
@@ -66,12 +66,12 @@ namespace Tutorials
             (string b, string s, string w, string h, string l) c = ("Box ID:", "Size:  ", "Width:", "Height:", "Length:");
             string x = " | ";
             string header = c.b + x + c.s + x + c.w + x + c.h + x + c.l;
-            Console.WriteLine(new String('-', header.Length));
+            Console.WriteLine(new string('-', header.Length));
             Console.WriteLine(header);
-            Console.WriteLine(new String('-', header.Length));
+            Console.WriteLine(new string('-', header.Length));
             foreach (var b in boxes)
             {
-                Console.WriteLine(b.ToString(c.b.Length , c.s.Length, c.w.Length, c.h.Length, c.l.Length));
+                Console.WriteLine(b.ToString(c.b.Length, c.s.Length, c.w.Length, c.h.Length, c.l.Length));
             }
         }
 

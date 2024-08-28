@@ -1,9 +1,9 @@
-﻿using UtilityLibraries;
+﻿using StringLibrary;
 
 namespace StringLibraryTest
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
         [TestMethod]
         public void TestStartsWithUpper()
@@ -41,7 +41,7 @@ namespace StringLibraryTest
             string?[] words = { string.Empty, null };
             foreach (var word in words)
             {
-                bool result = StringLibrary.StartsWithUpper(word ?? string.Empty);
+                bool result = StringExtensions.StartsWithUpper(word ?? string.Empty);
                 Assert.IsFalse(result,
                        string.Format("Expected for '{0}': false; Actual: {1}",
                                      word ?? "<null>", result));

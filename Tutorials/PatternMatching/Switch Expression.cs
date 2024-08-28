@@ -1,30 +1,28 @@
-﻿namespace SwitchExample
+﻿// examples of the new switch expressions
+
+using System;
+
+namespace Tutorials.PatternMatching;
+
+static class SwitchEpressions
 {
-    // examples of the new switch expressions
-
-    using System;
-
-    class Switch
+    public static void Test()
     {
-        public static void Main1()
+        var t = new SwitchExamples();
+        try
         {
-            var t = new Test();
-            try
-            {
-                Console.WriteLine(t.Sprawdz("2"));
-                Console.WriteLine($"{t.CalculateDiscount(new Order(20, 5000)) * 100:0.0}%");
-            }
-            catch (ArgumentException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            Console.WriteLine(t.Contains("2"));
+            Console.WriteLine($"{t.CalculateDiscount(new Order(20, 5000)) * 100:0.0}%");
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
         }
     }
 
-
-    class Test
+    class SwitchExamples
     {
-        public string Sprawdz(string t) =>
+        public string Contains(string t) =>
             t switch
             {
                 "1" => "We have 1.",
@@ -36,7 +34,7 @@
         string WaterState(int tempInFahrenheit) =>
             tempInFahrenheit switch
             {
-                (> 32) and (< 212) => "liquid",
+                > 32 and < 212 => "liquid",
                 < 32 => "solid",
                 > 212 => "gas",
                 32 => "solid/liquid transition",
@@ -64,5 +62,5 @@
             };
     }
 
-    public record Order(int Items, decimal Cost);
+    record Order(int Items, decimal Cost);
 }

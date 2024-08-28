@@ -1,4 +1,4 @@
-﻿using UtilityLibraries;
+﻿using StringLibrary;
 
 class Program
 {
