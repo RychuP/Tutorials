@@ -1,44 +1,44 @@
-﻿namespace PredefinedDelegates
+﻿using System;
+
+namespace Tutorials.Delegates;
+
+// good explanation at https://docs.microsoft.com/en-gb/dotnet/csharp/delegates-strongly-typed
+static class PredefinedDelegates
 {
-    // good explanation at https://docs.microsoft.com/en-gb/dotnet/csharp/delegates-strongly-typed
-
-    using System;
-
-    class Program
+    public static void Test()
     {
-        static void Main1()
-        {
-            int x = 1;
+        int x = 1;
 
-            // action that takes double as a parameter
-            Action<double> y = Nothing;
+        // function that takes double as a parameter
+        Action<double> doubleAction = DisplayArg;
 
-            // action that takes int as a parameter
-            Action<int> y1 = Nothing;
+        // function that takes int as a parameter
+        Action<int> intAction = DisplayArg;
 
-            // function that takes int as a parameter and returns string
-            Func<int, string> z = (x) => $"String representation of the {x.GetType()} {x} is {x}.";
+        // function that takes int as a parameter and returns string
+        Func<int, string> intStrFunc = DisplayArgType;
 
-            // takes int and returns bool
-            Predicate<int> g = (x) => x == 69 ? true : false;
-            
-            // test calls
-            y(23);
-            y1(32);
-            Console.WriteLine(z((int)23f));
-            Console.WriteLine("Predicate g with a param 69 returns {0}.", g(69) ? "true" : "false");
-            Console.WriteLine("Predicate g with a param 78 returns {0}.", g(78) ? "true" : "false");
-            Console.WriteLine("Variable x value: {0}", x);
-        }
+        // function that takes int as a parameter and returns bool
+        Predicate<int> predicFunc = CheckArgIs69;
 
-        static void Nothing<T>(T cos)
-        {
-            Console.WriteLine("Inside generic Nothing. {0} is type {1}", cos, cos.GetType());
-        }
-
-        static void Nothing(int cos)
-        {
-            Console.WriteLine("Inside not generic Nothing. {0} is type {1}", cos, cos.GetType());
-        }
+        // test calls
+        doubleAction(23);
+        intAction(32);
+        Console.WriteLine(intStrFunc((int)23.4f));
+        Console.WriteLine("Predicate func checking if param 69 is 69 returns {0}.", predicFunc(69) ? "true" : "false");
+        Console.WriteLine("Predicate func checking if param 78 is 69 returns {0}.", predicFunc(78) ? "true" : "false");
+        Console.WriteLine("Variable x value: {0}", x);
     }
+
+    static void DisplayArg<T>(T arg) =>
+        Console.WriteLine("Inside generic DisplayArg. {0} is type {1}", arg, arg!.GetType());
+
+    static void DisplayArg(int arg) =>
+        Console.WriteLine($"Inside not generic DisplayArg. {arg} is type {arg.GetType()}");
+
+    static bool CheckArgIs69(int arg) =>
+        arg == 69;
+
+    static string DisplayArgType(int arg) =>
+        $"String representation of the {arg.GetType()} {arg} is {arg}.";
 }

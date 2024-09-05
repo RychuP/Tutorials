@@ -1,16 +1,15 @@
 ﻿// https://docs.microsoft.com/en-gb/dotnet/csharp/programming-guide/file-system/how-to-get-information-about-files-folders-and-drives
 
-using System;
 using System.IO;
 
 namespace Tutorials.IO;
 
 static class Program
 {
-    static void Main1(string[] args)
+    public static void Test(string[] args)
     {
         // drive info
-        DriveInfo di = new DriveInfo(@"C:\");
+        DriveInfo di = new(@"C:\");
         Console.WriteLine(di.Name);
         Console.WriteLine(di.TotalSize);
         Console.WriteLine(di.AvailableFreeSpace + "\n");

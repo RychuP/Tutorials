@@ -1,5 +1,4 @@
-﻿using System;
-using ConsoleTable;
+﻿using ConsoleTable;
 using System.Collections.Generic;
 using System.Collections;
 using RandomNameGenerator;

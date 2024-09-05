@@ -1,4 +1,6 @@
-﻿namespace Tutorials;
+﻿global using System;
+
+namespace Tutorials;
 
 internal class Program
 {
@@ -16,6 +18,15 @@ internal class Program
         //Threading.ThreadingSample.Test();
         //Threading.AsyncAwait.Test();
 
-        NullChecks.Test();
+        //Fundamentals.NullChecks.Test();
+        //Fundamentals.Parameters.Test();
+        //Fundamentals.Attributes.Test();
+
+        //Operators.Fraction.Test();
+
+        //Delegates.PredefinedDelegates.Test();
+        //Delegates.DelegatePatters.Test();
+
+        //Linq.QueryExamples.Test();
     }
 }

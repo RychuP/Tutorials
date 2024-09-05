@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tutorials.Operators;
+﻿namespace Tutorials.Operators;
 
 class Fraction
 {
@@ -30,15 +28,16 @@ class Fraction
         Fraction a = new(2, 3);
         Fraction c = new(3, 4);
         var d = a / c;
-        Console.WriteLine($"{d}");
+        Console.WriteLine($"{a} / {c} = {d}");
+        Console.WriteLine($"{d} = {d + 0.2d:F2}");
     }
     public static Fraction operator +(Fraction a) => a;
-    public static Fraction operator -(Fraction a) => new Fraction(-a._num, a._den);
+    public static Fraction operator -(Fraction a) => new(-a._num, a._den);
     public static Fraction operator +(Fraction a, Fraction b) =>
-        new Fraction(a._num * b._den + b._num * a._den, a._den * b._den);
+        new(a._num * b._den + b._num * a._den, a._den * b._den);
     public static Fraction operator -(Fraction a, Fraction b) => a + -b;
     public static Fraction operator *(Fraction a, Fraction b) =>
-        new Fraction(a._num * b._num, a._den * b._den);
+        new(a._num * b._num, a._den * b._den);
     public static Fraction operator /(Fraction a, Fraction b)
     {
         if (b._num == 0)
@@ -51,5 +50,5 @@ class Fraction
     public static implicit operator double(Fraction a) => (double)a._num / a._den;
 
     public static explicit operator Fraction(double a) => throw new NotImplementedException();
-    public override string ToString() => $"{_num} / {_den}";
+    public override string ToString() => $"<{_num}/{_den}>";
 }

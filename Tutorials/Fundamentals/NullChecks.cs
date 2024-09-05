@@ -1,6 +1,6 @@
 ﻿using static System.Console;
 
-namespace Tutorials;
+namespace Tutorials.Fundamentals;
 
 static class NullChecks
 {

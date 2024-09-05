@@ -1,36 +1,34 @@
-﻿namespace Logger
+﻿using System;
+using System.IO;
+
+namespace Tutorials.Delegates;
+// common patterns for delegates https://docs.microsoft.com/en-gb/dotnet/csharp/delegates-patterns
+// a sample logger class
+
+static class DelegatePatters
 {
-    // common patterns for delegates https://docs.microsoft.com/en-gb/dotnet/csharp/delegates-patterns
-    // a sample logger class
-
-    using System;
-    using System.IO;
-
-    class Program
+    public static void Test()
     {
-        static void Main1()
-        {
-            // test for for null WriteMessage delegate
-            Logger.LogMessage(Severity.Critical, "foo", "bar");
+        // test for for null WriteMessage delegate
+        Logger.LogMessage(Severity.Critical, "foo", "bar");
 
-            // attach handlers
-            var file = new FileLogger("log.txt");
-            Logger.WriteMessage += LoggingMethods.LogToConsole;
+        // attach handlers
+        var file = new FileLogger("log.txt");
+        Logger.WriteMessage += LoggingMethods.LogToConsole;
 
-            // mid severity
-            Logger.LogMessage(Severity.Information, "trutu", "tutu");
-            Logger.LogMessage(Severity.Critical, "foo", "bar");
+        // mid severity
+        Logger.LogMessage(Severity.Information, "trutu", "tutu");
+        Logger.LogMessage(Severity.Critical, "foo", "bar");
 
-            // low severity
-            Logger.LogLevel = Severity.Trace;
-            Logger.LogMessage(Severity.Information, "trutu", "tutu");
-            Logger.LogMessage(Severity.Critical, "wel", "come");
-        }
+        // low severity
+        Logger.LogLevel = Severity.Trace;
+        Logger.LogMessage(Severity.Information, "trutu", "tutu");
+        Logger.LogMessage(Severity.Critical, "wel", "come");
     }
 
-    public static class Logger
+    static class Logger
     {
-        public static Action<string> WriteMessage;
+        public static Action<string>? WriteMessage;
 
         public static Severity LogLevel { get; set; } = Severity.Warning;
 
@@ -47,7 +45,7 @@
         }
     }
 
-    public static class LoggingMethods
+    static class LoggingMethods
     {
         public static void LogToConsole(string message)
         {
@@ -55,13 +53,14 @@
         }
     }
 
-    public class FileLogger
+    class FileLogger
     {
         private readonly string logPath;
         public FileLogger(string path)
         {
             logPath = path;
             Logger.WriteMessage += LogMessage;
+            File.WriteAllText(path, String.Empty);
         }
 
         public void DetachLog() => Logger.WriteMessage -= LogMessage;
@@ -70,11 +69,9 @@
         {
             try
             {
-                using (var log = File.AppendText(logPath))
-                {
-                    log.WriteLine(msg);
-                    log.Flush();
-                }
+                using var log = File.AppendText(logPath);
+                log.WriteLine(msg);
+                log.Flush();
             }
             catch (Exception)
             {
@@ -88,7 +85,7 @@
         }
     }
 
-    public enum Severity
+    enum Severity
     {
         Verbose,
         Trace,
