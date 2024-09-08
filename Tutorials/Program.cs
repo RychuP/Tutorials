@@ -28,5 +28,7 @@ internal class Program
         //Delegates.DelegatePatters.Test();
 
         //Linq.QueryExamples.Test();
+
+        Loops.ForLoops.Test();
     }
 }
